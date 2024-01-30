@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 const corsOptions = {
-  origin: 'http://your-client-origin.com', // replace with your actual client origin
+  origin: '*', // replace with your actual client origin
   credentials: true,
 };
 
