@@ -8,6 +8,7 @@ const globalErrorHandler = require('./controller/errorController');
 const userRouter = require('./routes/userRouter');
 const noteRouter = require('./routes/noteRouter');
 const AppError = require('./utils/appError');
+const cors = require('cors');
 const app = express();
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); // Replace * with specific origin if needed
@@ -15,6 +16,12 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
+const corsOptions = {
+  origin: 'http://your-client-origin.com', // replace with your actual client origin
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(
   session({
