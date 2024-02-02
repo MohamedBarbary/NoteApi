@@ -16,7 +16,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors(corsOptions));
 app.use(helmet());
 app.use(
   session({
