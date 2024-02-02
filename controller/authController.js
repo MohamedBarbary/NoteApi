@@ -93,7 +93,7 @@ exports.login = catchAsyncError(async (req, res, next) => {
 exports.protectRoutes = catchAsyncError(async (req, res, next) => {
   // 1)getting token if there is token
 if ( req.headers.jwt) {
-    token = reqheaders.jwt.split('=')[1]
+    token = req.headers.jwt.split('=')[1]
   console.log(token);
   }
   if (!token) {
