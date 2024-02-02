@@ -10,8 +10,12 @@ const userRouter = require('./routes/userRouter');
 const noteRouter = require('./routes/noteRouter');
 const AppError = require('./utils/appError');
 const app = express();
-app.use(cors());
-app.use(
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Replace * with specific origin if needed
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});app.use(
   cors({
     credentials: true,
     origin: '*'
