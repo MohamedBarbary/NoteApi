@@ -39,7 +39,7 @@ document
     };
     console.log(formData);
     // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
-    const apiUrl = 'http://127.0.0.1:4001/api/users/resetPassword/';
+    const apiUrl = 'https://noteapi-production-a0e1.up.railway.app/api/users/resetPassword/';
     console.log(apiUrl + token);
     fetch(apiUrl + token, {
       method: 'POST',
