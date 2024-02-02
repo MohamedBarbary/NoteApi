@@ -13,36 +13,36 @@ const signToken = (id) => {
     expiresIn: '30d',
   });
 };
-const createSendToken = (statusCode, res) => {
-  // const token = signToken(user._id);
+const createSendToken = (user,statusCode, res) => {
+  const token = signToken(user._id);
   res.cookie('jwt', 'tokenk' );
 
   // Remove password from output
-  // user.password = undefined;
+  user.password = undefined;
    res.status(statusCode).json({
     status: 'success',
-    // token,
+    token,
     data: {
-      // user,
+      user,
     },
   });
 };
 ///////////////////////////
 exports.signUp = catchAsyncError(async (req, res, next) => {
-  // const user = await User.create({
-  //   userName: req.body.userName,
-  //   email: req.body.email,
-  //   password: req.body.password,
-  //   passwordConfirm: req.body.passwordConfirm,
-  // });
-  // const verificationToken = user.generateVerificationToken();
-  // const url = `${req.protocol}://${req.get(
-  //   'host'
-  // )}/api/users/verify/${verificationToken}`;
-  // // const url = 'how are you ';
-  // const html = `click <a href=${url}>here</a> to confirm your email.`;
-  // await emailSender.sendMail(user.email, html, 'verify mail');
-  createSendToken(201, res);
+  const user = await User.create({
+    userName: req.body.userName,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm,
+  });
+  const verificationToken = user.generateVerificationToken();
+  const url = `${req.protocol}://${req.get(
+    'host'
+  )}/api/users/verify/${verificationToken}`;
+  // const url = 'how are you ';
+  const html = `click <a href=${url}>here</a> to confirm your email.`;
+  await emailSender.sendMail(user.email, html, 'verify mail');
+  createSendToken(user,201, res);
 });
 //////////////////////////////////////////////////////
 exports.verify = catchAsyncError(async (req, res, next) => {
