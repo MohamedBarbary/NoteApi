@@ -98,8 +98,8 @@ exports.protectRoutes = catchAsyncError(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-  } else if (req.cookies.jwt) {
-    token = req.cookies.jwt;
+  } else if ( req.headers.authorization.jwt) {
+    token = req.headers.authorization.jwt;
   }
   if (!token) {
     return next(new AppError('your are not logged in! please login '), 401);
