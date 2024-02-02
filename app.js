@@ -25,7 +25,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(cookieParser());
 
 app.use(express.json({ limit: '10kb' }));
 app.set('view engine', 'ejs');
