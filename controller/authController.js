@@ -92,14 +92,8 @@ exports.login = catchAsyncError(async (req, res, next) => {
 ////////////////////////////
 exports.protectRoutes = catchAsyncError(async (req, res, next) => {
   // 1)getting token if there is token
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    token = req.headers.authorization.split(' ')[1];
-  } else if ( req.headers.authorization.jwt) {
-    token = req.headers.authorization.jwt;
+if ( req.headers.jwt) {
+    token = req.headers.jwt;
   }
   if (!token) {
     return next(new AppError('your are not logged in! please login '), 401);
