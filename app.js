@@ -45,6 +45,10 @@ app.use('/api/v1/notes', noteRouter);
 app.use('/api/users', userRouter);
 
 app.all('*', (req, res, next) => {
+  req.cookies(req.cookies);
+next();
+});
+app.all('*', (req, res, next) => {
   next(new AppError(`can't find ${req.originalUrl} on server!`, 404));
 });
 
