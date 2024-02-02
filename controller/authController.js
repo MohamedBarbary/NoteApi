@@ -24,7 +24,12 @@ const createSendToken = (user, statusCode, res) => {
   //  };
   //  cookieOptions.secure = true;
 
-  res.cookie('jwt', token);
+  res.cookie('jwt', token {
+  path: "/",
+  httpOnly: true,
+  secure: false,
+  maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+});
 
   // Remove password from output
   user.password = undefined;
