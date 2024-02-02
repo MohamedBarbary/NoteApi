@@ -12,7 +12,7 @@ const AppError = require('./utils/appError');
 const app = express();
 
 app.use(cors({
-  credentials : true,
+  credentials : 'include',
   origin: '*', // Replace with your allowed origin
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: 'Content-Type',
