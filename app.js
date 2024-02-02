@@ -12,13 +12,11 @@ const AppError = require('./utils/appError');
 const app = express();
 
 app.use(cors({
-  credentials : 'include',
+  credentials: true,
   origin: '*', // Replace with your allowed origin
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: 'Content-Type',
 }));
-
-// app.set("trust proxy", 1);
 
 app.use(helmet());
 app.use(express.json({ limit: '10kb' }));
@@ -36,7 +34,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-   sethttponly : true,
+    httpOnly: true,
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
   },
 }));
@@ -46,8 +44,9 @@ app.use('/api/users', userRouter);
 
 app.all('*', (req, res, next) => {
   req.cookies(req.cookies);
-next();
+  next();
 });
+
 app.all('*', (req, res, next) => {
   next(new AppError(`can't find ${req.originalUrl} on server!`, 404));
 });
