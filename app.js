@@ -13,7 +13,7 @@ const app = express();
 
 app.use(cors({
   credentials: true,
-  origin: 'http://127.0.0.1:5500', // Replace with your allowed origin
+  origin: '*', // Replace with your allowed origin
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: 'Content-Type',
 }));
