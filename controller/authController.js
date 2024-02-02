@@ -94,6 +94,7 @@ exports.protectRoutes = catchAsyncError(async (req, res, next) => {
   // 1)getting token if there is token
 if ( req.headers.jwt) {
     token = req.headers.jwt;
+  console.log(token);
   }
   if (!token) {
     return next(new AppError('your are not logged in! please login '), 401);
