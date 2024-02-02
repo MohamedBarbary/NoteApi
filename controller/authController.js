@@ -15,7 +15,7 @@ const signToken = (id) => {
 };
 const createSendToken = (statusCode, res) => {
   // const token = signToken(user._id);
-  res.cookie('jwt', 'token' );
+  res.cookie('jwt', 'tokenk' );
 
   // Remove password from output
   // user.password = undefined;
