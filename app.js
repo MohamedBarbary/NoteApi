@@ -12,7 +12,7 @@ const AppError = require('./utils/appError');
 const app = express();
 
 app.use(cors({
-  credentials:true,
+  credentials : true,
   origin: '*', // Replace with your allowed origin
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: 'Content-Type',
@@ -36,7 +36,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    httpOnly: true,
+   sethttponly : true,
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
   },
 }));
