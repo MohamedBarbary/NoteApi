@@ -15,7 +15,8 @@ Registered users can log in to their accounts using their email and password. Up
 
 ### 3. Forgot Password & Reset Password
 In case users forget their password, they can request a password reset. A unique reset token is sent to their email, allowing them to reset their password securely.
-then Users can reset their password by providing the reset token received via email. The server verifies the token's validity before allowing users to update their password.
+
+Users can reset their password by providing the reset token received via email. The server verifies the token's validity before allowing users to update their password.
 
 ### 4. Note (CRUD)
 After logging in, users can interact with the Note API, which includes the following functionalities:
