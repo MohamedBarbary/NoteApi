@@ -170,6 +170,9 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
     res.status(404).render('404');
   }
   //3) update user
+  if(req.body.password!==req.body.passwordConfirm){
+        next(new AppError('please,enter two equals passwords', 500));
+  }
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
   user.passwordResetToken = undefined;
