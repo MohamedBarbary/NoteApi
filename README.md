@@ -7,6 +7,7 @@ Simple Backend is a Node.js server using Express and MongoDB (with Mongoose) tha
 
 ### 1. Sign Up
 Users can create a new account by providing their email and password. The user information is stored securely in the MongoDB database.
+
 **Email Verification:** After successful signup, users receive a verification email containing a unique token. Clicking the verification link verifies the user's email address.
 
 ### 2. Login
