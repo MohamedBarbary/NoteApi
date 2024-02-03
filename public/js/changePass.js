@@ -19,7 +19,7 @@ document
 
     if (newPassword !== confirmPassword) {
       // Passwords do not match, handle this case (e.g., show an error message)
-      console.error('Passwords do not match');
+              blueParagraph.textContent = 'Passwords do not match';
       return;
     }
 
