@@ -50,4 +50,7 @@ Controllers in this project utilize an advanced error handling approach using an
 - MongoDB with Mongoose
 - ejs
 
+## API Endpoints : https://documenter.getpostman.com/view/29168656/2s9YkgEkYD
+
+## Live Demo :
 
