@@ -1,6 +1,6 @@
 # NoteApi
 
-Simple Backend is a Node.js server using Express and MongoDB (with Mongoose) that follows the MVC architecture. It provides user authentication features such as sign up, login, forgot password, reset password, and a note API with functionalities to add, delete, and update notes.
+Node.js server using Express and MongoDB (with Mongoose) that follows the MVC architecture. It provides user authentication features such as sign up, login, forgot password, reset password, and a note API with functionalities to add, delete, and update notes.
 
 
 ## Features
