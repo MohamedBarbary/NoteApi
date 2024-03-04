@@ -1,5 +1,3 @@
-// check success codes
-// check failed codes
 const User = require('./../models/userModel');
 const jwt = require('jsonwebtoken');
 const emailSender = require('./../utils/email');
@@ -16,7 +14,6 @@ const signToken = (id) => {
 const createSendToken = (user,statusCode, res) => {
   const token = signToken(user._id);
 
-  // Remove password from output
   user.password = undefined;
    res.status(statusCode).json({
     status: 'success',
@@ -26,7 +23,6 @@ const createSendToken = (user,statusCode, res) => {
     },
   });
 };
-///////////////////////////
 exports.signUp = catchAsyncError(async (req, res, next) => {
   const user = await User.create({
     userName: req.body.userName,
@@ -43,22 +39,18 @@ exports.signUp = catchAsyncError(async (req, res, next) => {
   await emailSender.sendMail(user.email, html, 'verify mail');
   createSendToken(user,201, res);
 });
-//////////////////////////////////////////////////////
 exports.verify = catchAsyncError(async (req, res, next) => {
   const token = req.params.token;
-  // Check we have an id
   if (!token) {
     return res.status(400).send({
       message: 'Missing Token',
     });
   }
-  // Step 1 -  Verify the token from the URL
   let payload = null;
   payload = jwt.verify(token, process.env.USER_VERIFICATION_TOKEN_SECRET);
   if (!payload) {
     next(new AppError('link is not valid', 400));
   }
-  // Step 2 - Find user with matching ID
   const user = await User.findOne({ _id: payload.ID });
 
   if (!user) {
@@ -68,7 +60,6 @@ exports.verify = catchAsyncError(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
   res.status(200).render('verify');
 });
-//////////////////////////////////////////
 exports.login = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -89,9 +80,7 @@ exports.login = catchAsyncError(async (req, res, next) => {
   }
   createSendToken(currentUser, 200, res);
 });
-////////////////////////////
 exports.protectRoutes = catchAsyncError(async (req, res, next) => {
-  // 1)getting token if there is token
 if ( req.headers.jwt) {
     token = req.headers.jwt.split('=')[1]
   console.log(token);
@@ -99,40 +88,29 @@ if ( req.headers.jwt) {
   if (!token) {
     return next(new AppError('your are not logged in! please login '), 401);
   }
-  //2) Validation for token
   const decodedData = await promisify(jwt.verify)(
     token,
     process.env.JWT_SECRET
   );
-  //3) get and check user
   const currentUser = await User.findById(decodedData.id);
   if (!currentUser) {
     return next(new AppError('user not exist please try again ', 404));
   }
-  //4) Check if user change password after token was issued
-  // if (currentUser.changePasswordAfter(decodedData.iat)) {
-  //   return new AppError('user changed password , login with new one ', 401);
-  // }
   req.user = currentUser;
   next();
 });
-///////////////////////////
 exports.logout = (req, res) => {
   res.clearCookie('jwt');
   res.status(200).json({ status: 'success' });
 };
-//////////////////////////
 exports.forgotPassword = catchAsyncError(async (req, res, next) => {
-  //1- find user
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
     next(new AppError('no user found invalid mail', 404));
   }
-  //2-
   if (!user.verified) {
     next(new AppError('please verify your email', 400));
   }
-  // 3- send token
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
   console.log(user.passwordResetToken);
@@ -149,27 +127,22 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     message: 'we send mail for you to verify you mail',
   });
 });
-
 exports.editPassword = catchAsyncError(async (req, res, next) => {
   res.status(200).render('resetPassword');
 });
 exports.resetPassword = catchAsyncError(async (req, res, next) => {
-  // 1)Get user based on the token
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
-  //2)
-
+ 
   const user = await User.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() },
   });
-  // 2) If token has not expired, and there is user, set the new password
   if (!user) {
     res.status(404).render('404');
   }
-  //3) update user
   if(req.body.password!==req.body.passwordConfirm){
         next(new AppError('please,enter two equals passwords', 500));
   }
