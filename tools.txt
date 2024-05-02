@@ -1,0 +1,8 @@
+1- passport for google oauth 
+2- nodeMailer&mailGen for send mail 
+3- remain error handling from 118 to 122
+4-security 
+5-embedding data
+6-change pass at 
+-passport-google-oauth20
+-i had a problem with download dotenv so i use (del) to delete
