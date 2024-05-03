@@ -32,17 +32,18 @@ Follow these steps to set up and use the Simple Backend:
    
 2. **Install Dependencies**: Run `npm install` to install the required dependencies.
    
-3. **Environment Variables**: Create a `.env` file and set the following environment variables:
-  ' Mongo_Atlas=
-    JWT_SECRET=
-    JWT_EXPIRES_IN=
-    JWT_COOKIE_EXPIRES_IN=
-    App_Password=
-    Sender=
-    USER_VERIFICATION_TOKEN_SECRET=
-    PORT=
-    NODE_ENV=
-'
+3. # Environment Variables
+         Mongo_Atlas=
+         JWT_SECRET=
+         JWT_EXPIRES_IN=
+         JWT_COOKIE_EXPIRES_IN=
+         App_Password=
+         Sender=
+         USER_VERIFICATION_TOKEN_SECRET=
+         PORT=
+         NODE_ENV=
+
+
 
 4. **Run the Server**: Start the server by running `npm start`.
 
