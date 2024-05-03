@@ -31,8 +31,8 @@ Follow these steps to set up and use the Simple Backend:
 1. **Clone Repository**: Clone this repository to your local machine.
    
 2. **Install Dependencies**: Run `npm install` to install the required dependencies.
-   
-3. *Environment Variables**: Create a `.env` file and set the following environment variables:
+
+3. **Environment Variables**: Create a `.env` file and set the following environment variables:
          Mongo_Atlas=
          JWT_SECRET=
          JWT_EXPIRES_IN=
