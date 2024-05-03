@@ -32,7 +32,7 @@ Follow these steps to set up and use the Simple Backend:
    
 2. **Install Dependencies**: Run `npm install` to install the required dependencies.
    
-3. # Environment Variables
+3. *Environment Variables**: Create a `.env` file and set the following environment variables:
          Mongo_Atlas=
          JWT_SECRET=
          JWT_EXPIRES_IN=
