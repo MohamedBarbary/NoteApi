@@ -65,6 +65,6 @@ Follow these steps to set up and use the Simple Backend:
 - MongoDB with Mongoose
 - JWT Authentication
   
-## Frontend: [Link to Frontend Repository](https://github.com/MohamedBarbary/NoteApi)
+## Frontend: [Link to Frontend Repository](https://github.com/MohamedBarbary/Note-App-frontend-)
 
 
